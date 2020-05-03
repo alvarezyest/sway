@@ -1,0 +1,99 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    "height": 25,
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["sway/window"],
+    "modules-right": ["custom/weather", "custom/spotify", "custom/keyboard-layout", "pulseaudio", "cpu", "memory", "battery", "network", "clock#time", "clock#date", "tray"],
+    "sway/window": {
+        "max-length": 50
+    },
+    "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{icon}",
+    "format-icons": {
+        "1": "",
+        "2": "",
+        "3": "",
+	"4": "",
+        "urgent": "",
+        "focused": "",
+        "default": ""
+      }
+    },
+    "custom/weather": {
+		"format": "{}",
+		"interval": 18000,
+		"exec": "~/.config/waybar/modules/weather",
+		"exec-if": "ping openweathermap.org -c1",
+		"tooltip": "false"
+    },
+        "custom/spotify": {
+        "interval": 1,
+        "return-type": "json",
+        "exec": "~/.config/waybar/modules/spotify.sh",
+        "exec-if": "pgrep spotify",
+        "escape": true
+    },
+    "custom/keyboard-layout": {
+        "exec": "~/.config/waybar/modules/kblayout",
+        "format": "<span color=\"#f1f1f1\"></span>   {}"
+    },
+    "pulseaudio": {
+    "format": "{volume}% {icon}",
+    "format-bluetooth": "{volume}% {icon}",
+    "format-muted": "",
+    "format-icons": {
+        "headphone": "",
+        "hands-free": "",
+        "headset": "",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": ["", ""]
+    },
+    "scroll-step": 1,
+    "on-click-right": "pavucontrol"
+    },
+    "battery": {
+        "format": "{capacity}% {icon}",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "network": {
+        // "interface": "wlp2s0", // (Optional) To force the use of this interface
+        "format-wifi": "<span color=\"#ff8277\"></span> {essid}",
+        "format-ethernet": "<span color=\"#5b8277\"></span> {ifname}",
+        "format-linked": "<span color=\"#5b8277\"></span> {ifname}",
+        "format-disconnected": "<span color=\"#b73030\">⚠</span> Disconnected",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "clock#time": {
+        "interval": 1,
+        "format": "{:%H:%M:%S}",
+        "tooltip": false
+    },
+
+    "clock#date": {
+      "interval": 10,
+      "format": "<span color=\"#cdf200\"></span>  {:%e %b %Y}", // Icon: calendar-alt
+      "tooltip-format": "{:%e %B %Y}"
+    },
+    "cpu": {
+        "interval": 5,
+        "format": "<span color=\"#aacc22\"></span>  {usage}% ({load})", // Icon: microchip
+        "states": {
+          "warning": 70,
+          "critical": 90
+          }
+    },
+    "memory": {
+    "interval": 30,
+    "format": "<span color=\"#CCCDDD\"></span>  {used:0.1f}G/{total:0.1f}G"
+    },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    }
+}
