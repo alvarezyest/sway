@@ -1,0 +1,235 @@
+# Doni Alvarezy
+# Sway Tilling Window Management Configuration
+
+# Tombol Utama
+set $mod Mod4
+
+# Arah
+set $left h
+set $down j
+set $up k
+set $right l
+
+# Terminal
+set $term urxvt
+
+# Gnome Schemea
+set $gnome-schema org.gnome.desktop.interface
+
+# Menu
+set $menu rofi -show drun -theme ~/.config/rofi/1.rasi
+
+# File manager
+set $filer nautilus
+
+# Bingkai Gaps
+default_border pixel 3
+smart_borders on
+smart_gaps on
+gaps inner 8
+
+# Autostart
+exec --no-startup-id dunst
+exec --no-startup-id picom
+
+## Seting Output
+
+# Wallpaper
+output * bg ~/Pictures/5.jpg fill
+
+# Default workspaces for common programms
+assign [app_id="firefox"] workspace 2
+assign [app_id="files"] workspace 3
+assign [app_id="rxvt-unicode"] workspace 1
+assign [app_id="Terminal"] workspace 1
+assign [app_id="Text Editor"] workspace 1
+assign [app_id="Inkscape"] workspace 4
+
+
+## Seting Input
+
+# Keyboard layout
+  input * {
+    xkb_layout us
+    xkb_options grp:alt_shift_toggle
+}
+
+## Key bindings
+
+# Shortcut:
+    # Start a terminal
+    bindsym $mod+Return exec $term
+
+    # Kill focused window
+    bindsym --to-code $mod+Shift+q kill
+
+    # Start your launcher
+    bindsym $mod+d exec $menu
+    
+    # Screenshot layar utama
+    bindsym Print exec grim ~/Pictures/screenshot-"$(date +%s)".png
+    
+    # Screenshot pemilihan area
+    bindsym $mod+Print exec grim -g "$(slurp)" ~/Pictures/screenshot-"$(date +%s)".png
+    
+    # Screenshot aplikasi pilihan
+    bindsym $mod+Shift+S exec grim -g "$(swaymsg -t get_tree | jq -r '.. | select(.focused?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"')" ~/Pictures/screenshot-"$(date +%s)".png
+
+    # Floating
+    floating_modifier $mod normal
+
+    # Reload Config
+    bindsym $mod+Shift+c reload
+
+    # Exit sway
+    bindsym $mod+Shift+e exec swaynag -t warning -m \
+        'Keluar dari sway. Pilih salah satu menu keluar' \
+        -b 'Logout' 'swaymsg exit' \
+        -b 'Sleep' 'systemctl suspend' \
+        -b 'Reboot' 'systemctl reboot' \
+        -b 'Poweroff' 'systemctl poweroff'
+    
+# Default window rules
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="dialog"] floating enable
+for_window [window_type="dialog"] floating enable
+
+
+# Moving around:
+
+    # Move your focus around
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+    # Or use $mod+[up|down|left|right]
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+
+    # Move the focused window with the same, but add Shift
+    bindsym $mod+Shift+$left move left
+    bindsym $mod+Shift+$down move down
+    bindsym $mod+Shift+$up move up
+    bindsym $mod+Shift+$right move right
+    # Ditto, with arrow keys
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
+#
+# Workspaces:
+#
+    # Switch to workspace
+    bindsym $mod+1 workspace 1
+    bindsym $mod+2 workspace 2
+    bindsym $mod+3 workspace 3
+    bindsym $mod+4 workspace 4
+    bindsym $mod+5 workspace 5
+    bindsym $mod+6 workspace 6
+    bindsym $mod+7 workspace 7
+    bindsym $mod+8 workspace 8
+    bindsym $mod+9 workspace 9
+    bindsym $mod+0 workspace 10
+    # Move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace 1
+    bindsym $mod+Shift+2 move container to workspace 2
+    bindsym $mod+Shift+3 move container to workspace 3
+    bindsym $mod+Shift+4 move container to workspace 4
+    bindsym $mod+Shift+5 move container to workspace 5
+    bindsym $mod+Shift+6 move container to workspace 6
+    bindsym $mod+Shift+7 move container to workspace 7
+    bindsym $mod+Shift+8 move container to workspace 8
+    bindsym $mod+Shift+9 move container to workspace 9
+    bindsym $mod+Shift+0 move container to workspace 10
+    # Note: workspaces can have any name you want, not just numbers.
+    # We just use 1-10 as the default.
+
+# Layout stuff:
+
+    # respectively.
+    bindsym --to-code $mod+b splith
+    bindsym --to-code $mod+v splitv
+
+    # Switch the current container between different layout styles
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
+
+    # Make the current focus fullscreen
+    bindsym $mod+f fullscreen
+
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+Shift+space floating toggle
+
+    # Swap focus between the tiling area and the floating area
+    bindsym $mod+space focus mode_toggle
+
+    # Move focus to the parent container
+    bindsym $mod+a focus parent
+#
+# Scratchpad:
+#
+    # Scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+    bindsym $mod+minus scratchpad show
+#
+# Resizing containers:
+#
+mode "resize" {
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+ set $grey       #323232
+ set $lightgreen #1abc9c
+ set $white      #eff0f1
+ set $bg         #31363b
+ set $black      #900000
+ set $red        #CB4B16
+
+ # Sway theme
+ # class                   border     backgr.    text    indic.     child_border
+   client.focused          $lightgreen $bg        $white  $lightgreen $lightgreen
+   client.focused_inactive $bg        $bg        $white  $bg        $bg
+   client.unfocused        $bg        $bg        $white  $bg        $bg
+   client.urgent           $red       $red       $white  $black     $black
+
+#
+# Status Bar:
+#
+bar {
+
+   swaybar_command waybar
+}
+
+ set $grey       #444444
+ set $lightblue #3daee9
+ set $white      #eff0f1
+ set $bg         #222222
+ set $black      #900000
+ set $red        #CB4B16
+
+ # Sway theme
+ # class                   border     backgr.    text    indic.     child_border
+   client.focused          $grey      $bg        $white  $lightblue $lightblue
+   client.focused_inactive $bg        $bg        $white  $bg        $bg
+   client.unfocused        $bg        $bg        $white  $bg        $bg
+   client.urgent           $red       $red       $white  $black     $black
+
+include /etc/sway/config.d/*
