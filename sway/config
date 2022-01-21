@@ -35,11 +35,12 @@ input type:touchpad {
     natural_scroll enabled
 }
 
-# Gnome Schemea
+# Themes & Icons
 set $gnome-schema org.gnome.desktop.interface
 exec_always {
-    gsettings set $gnome-schema gtk-theme 'Qogir-light'
-    gsettings set $gnome-schema icon-theme 'McMUse-circle'
+    gsettings set $gnome-schema gtk-theme 'Colloid-dark'
+    gsettings set $gnome-schema icon-theme 'Kora Green'
+    gsettings set $gnome-schema font-name 'FiraCode 10'
 }
 
 # Windows coloring
