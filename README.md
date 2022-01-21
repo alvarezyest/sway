@@ -1,0 +1,2 @@
+# sway
+Dotfiles Sway Config
