@@ -1,0 +1,10 @@
+# Image
+image=/home/vzy/Pictures/4584121.jpg
+scaling=fill
+
+# Indicator
+ignore-empty-password
+indicator-caps-lock
+
+# Behavior
+show-failed-attempts
