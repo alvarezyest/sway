@@ -18,8 +18,12 @@ set $term kitty
 
 # Menu
 set $menu rofi -no-lazy-grab -show drun -theme /home/vzy/.config/rofi/1.rasi
+
+# Display Resolution
+output HDMI-A-1 mode 1920x1080@60Hz position 0,0
+
 # Wallpapers
-output * bg ~/Pictures/2.jpg fill
+output * bg ~/Pictures/3.jpg fill
 
 # Idle Lock
 exec swayidle -w \
@@ -37,8 +41,8 @@ input type:touchpad {
 # Themes & Icons
 set $gnome-schema org.gnome.desktop.interface
 exec_always {
-    gsettings set $gnome-schema gtk-theme 'WhiteSur'
-    gsettings set $gnome-schema icon-theme 'WhiteSur'
+    gsettings set $gnome-schema gtk-theme 'Colloid'
+    gsettings set $gnome-schema icon-theme 'Colloid'
     gsettings set $gnome-schema font-name 'FiraCode 11'
 }
 
@@ -79,6 +83,7 @@ default_border pixel 0
     
 # Load & Reload
     bindsym $mod+Shift+c reload
+#    bindsym $mod+Shift+e wlogout -p layer-shell &
     bindsym $mod+Shift+e exec swaynag -t warning -m \
         'Keluar dari sway. Pilih salah satu menu keluar' \
         -b 'Logout' 'swaymsg exit' \

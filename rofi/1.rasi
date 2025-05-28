@@ -2,7 +2,7 @@ configuration {
 	modi:				"drun";
 	font:				"FiraCode 8";
 	show-icons:                     true;
-	icon-theme: 			"Delight-Green";
+	icon-theme: 			"Colloid";
 	display-drun: 			"";
 	drun-display-format:            "{name}";
 	sidebar-mode: 			false;
@@ -11,10 +11,10 @@ configuration {
 @theme "/dev/null"
 
 * {
-	bg:				#ff0066;
-	fg:				#e8e8d3;
-	accent:				#b30059;
-	button:				#b30059;
+	bg:				#11111b;
+	fg:				#587060;
+	accent:				#333333;
+	button:				#333333;
 
 	background-color:		@bg;
 	text-color:			@fg;
@@ -26,7 +26,7 @@ window {
 	padding: 			4px;
     location:                       center;
     x-offset:                       -710;
-    y-offset:                       220;
+    y-offset:                       230;
 }
 
 prompt {

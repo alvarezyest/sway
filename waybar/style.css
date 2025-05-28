@@ -1,154 +1,131 @@
 * {
-    font-family: FiraCode Bold;
-    font-size: 9pt;
+min-height: 0;
+min-width: 0;
+font-family: Lexend, "FiraCode";
+font-size: 11px;
 }
 
 window#waybar {
-    background: linear-gradient(to left, #b30059,  #334d00, #444444);
-    color: white;
-    opacity: 0.7;
-    transition-property: background, background-color;
-    transition-duration: 1.5s;
-}
-
-window#waybar.hidden {
-    opacity: 0.5;
-}
-
-
-window#waybar.empty {
-    background: transparent;
-}
-window#waybar.solo {
-    background: white;
-}
-
-
-window#waybar.kitty {
-    background-color: #3F3F3F;
-}
-
-#custom-weather {
-    padding: 0 10px;
-    background: transparent;
-    color: white;
-    border-bottom: 0px solid transparent;
-}
-
-window#waybar.firefox {
-    background-color: white;
-    border: none;
+    transition-property: background-color;
+    transition-duration: 0.5s;
+    /* background-color: #1e1e2e; */
+    /* background-color: #181825; */
+    background-color: #CCCCFF;
+    /* background-color: rgba(24, 24, 37, 0.6); */
 }
 
 #workspaces button {
-    padding: 0 20px;
-    background: transparent;
-    color: white;
-    border-bottom: 0px solid transparent;
+padding: 0.3rem 0.6rem;
+margin: 0.4rem 0.25rem;
+border-radius: 6px;
+/* background-color: #181825; */
+background-color: #1e1e1e;
+color: #cdd6f4;
 }
 
-#workspaces button.focused {
-    background: transparent;
-    border-bottom: 0px solid white;
+#workspaces button:hover {
+color: #1e1e2e;
+background-color: #cdd6f4;
+}
+
+#workspaces button.active {
+background-color: #1e1e2e;
+color: #89b4fa;
 }
 
 #workspaces button.urgent {
-    background-color: #eb4d4b;
+background-color: #1e1e2e;
+color: #f38ba8;
 }
 
-#mode {
-    background: #64727D;
-    border-bottom: 2px solid white;
+#clock,
+#pulseaudio,
+#custom-logo,
+#custom-power,
+#custom-spotify,
+#custom-notification,
+#cpu,
+#tray,
+#memory,
+#window,
+#mpris {
+padding: 0.3rem 0.6rem;
+margin: 0.4rem 0.25rem;
+border-radius: 6px;
+/* background-color: #181825; */
+background-color: #1e1e2e;
 }
 
-#battery, #cpu, #memory, #disk, #temperature, #backlight, #network, #pulseaudio, #custom-media, #tray, #mode, #idle_inhibitor {
-    padding: 0 5px;
-    margin: 0 5px;
-    color: white;
+#mpris.playing {
+color: #a6e3a1;
+}
+
+#mpris.paused {
+color: #9399b2;
+}
+
+#custom-sep {
+padding: 0px;
+color: #585b70;
+}
+
+window#waybar.empty #window {
+    background-color: transparent;
+}
+
+#custom-weather {
+background-color: #1e1e2e;
+color: #f38ba8;
+padding: 0.3rem 0.6rem;
+margin: 0.4rem 0.25rem;
+border-radius: 4px;
 }
 
 #custom-name {
-    padding: 0 25px;
-    margin: 0 0px;
-    background: transparent;
-    color: white;
-    transition-property: background, background-color;
-    transition-duration: .5s;
+background-color: #1e1e2e;
+color: #f38ba8;
+padding: 0.3rem 0.6rem;
+margin: 0.4rem 0.25rem;
+border-radius: 4px;
 }
+
+#cpu {
+color: #94e2d5;
+}
+
+#memory {
+color: #cba6f7;
+}
+
 #clock {
-    padding: 0 8px;
-    margin: 0 0px;
-    background: transparent;
-    color: white;
-    transition-property: background, background-color;
-    transition-duration: .5s;
+color: #74c7ec;
 }
 
-#battery.charging {
-    color: white;
-    background-color: #26A65B;
+#clock.simpleclock {
+color: #89b4fa;
 }
 
-
-@keyframes blink {
-    to {
-        background-color: white;
-        color: white;
-    }
+#window {
+color: #cdd6f4;
 }
 
-#battery.critical:not(.charging) {
-    background: #f53c3c;
-    color: white;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+#pulseaudio {
+color: #b4befe;
 }
 
-label:focus {
-    background-color: white;
+#pulseaudio.muted {
+color: #a6adc8;
 }
 
-#custom-media {
-    background: transparent;
-    color: #f1f1f1;
-    min-width: 100px;
+#custom-logo {
+color: #89b4fa;
 }
 
-.custom-spotify {
-    background: #66cc99;
+#custom-power {
+color: #f38ba8;
 }
 
-.custom-vlc {
-    background: #ffa000;
-}
-
-#temperature.critical {
-    background: #eb4d4b;
-}
-
-#idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
-}
-
-#mpd {
-    padding: 0 20px;
-    margin: 0 0px;
-    background: transparent;
-    color: white;
-}
-
-#mpd.disconnected {
-    background: transparent;
-}
-
-#mpd.stopped {
-    background: transparent;
-}
-
-#mpd.paused {
-    background: transparent;
+tooltip {
+    background-color: #181825;
+    border: 2px solid #89b4fa;
 }
